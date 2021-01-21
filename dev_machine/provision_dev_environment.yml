@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: install dependencies
+    apt:
+      name: ['lxd', 'python3-pylxd']
+      state: present
+      update_cache: yes
+    with_items:
+      - lxd
+  - name: start lxd
+    service:
+      name: lxd
+      state: started
