@@ -1,6 +1,7 @@
 import argparse
 
 from pylxd import Client
+from pylxd.exceptions import NotFound
 
 
 def _parse_args():
@@ -18,4 +19,8 @@ def _restore_container(container_name: str):
 
 if __name__ == "__main__":
     args = _parse_args()
-    _restore_container(args.container)
+    try:
+        _restore_container(args.container)
+    except NotFound:
+        print(f"Container {args.container} not found!")
+        exit(1)
