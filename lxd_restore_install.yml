@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: prepare dir
+      file:
+        name: "/root/tools"
+        state: directory
+    - name: copy script
+      copy:
+        src: lxd_restore.py
+        dest: /root/tools/lxd_restore.py
