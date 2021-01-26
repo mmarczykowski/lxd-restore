@@ -2,6 +2,14 @@
 - hosts: all
   become: yes
   tasks:
+    - name: install pip for python3
+      apt:
+        name: python3-pip
+        state: present
+        update_cache: yes
+    - name: install newest pylxd module
+      shell:
+        cmd: "pip3 install pylxd"
     - name: prepare dir
       file:
         name: "/root/tools"
