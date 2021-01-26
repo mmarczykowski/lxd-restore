@@ -14,7 +14,8 @@ def _restore_container(container_name: str):
     client = Client()
     container = client.containers.get(container_name)
     last_snap = container.snapshots.all()[-1]
-    container.restore(last_snap)
+    print(f"Restored snapshot {last_snap.name} of container {container.name}.")
+    container.restore_snapshot(last_snap.name)
 
 
 if __name__ == "__main__":
